@@ -24,6 +24,7 @@ interface EpisodeCardProps {
   episode: Episode;
   isSaved: boolean;
   onToggleSave: () => void;
+  isMobile: boolean;
 }
 
 const CardContent: React.FC<{ episode: Episode }> = ({ episode }) => {
@@ -146,17 +147,15 @@ const EpisodeCard: React.FC<EpisodeCardProps> = ({
     episode, 
     isSaved, 
     onToggleSave,
+    isMobile
 }) => {
-    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
     const imageRef = useRef<HTMLDivElement>(null);
     const [imageHeight, setImageHeight] = useState(0);
     const [imageTranslateY, setImageTranslateY] = useState(0);
 
     useEffect(() => {
         const handleResize = () => {
-            const mobile = window.innerWidth < 768;
-            setIsMobile(mobile);
-            if (mobile && imageRef.current) {
+            if (isMobile && imageRef.current) {
                 setImageHeight(imageRef.current.offsetWidth);
             }
         };
@@ -167,7 +166,7 @@ const EpisodeCard: React.FC<EpisodeCardProps> = ({
             clearTimeout(timer);
             window.removeEventListener('resize', handleResize);
         };
-    }, []);
+    }, [isMobile]);
 
     const handleScroll = (event: React.UIEvent<HTMLDivElement>) => {
         if (imageHeight > 0) {

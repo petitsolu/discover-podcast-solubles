@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { Episode } from './types';
 import { allProcessedEpisodes } from './data/episodes';
 import DiceIcon from './components/icons/DiceIcon';
@@ -21,9 +21,24 @@ const App: React.FC = () => {
   const [showScrollToTop, setShowScrollToTop] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    const rootElement = document.getElementById('root');
+    if (!rootElement) return;
+
+    const observer = new ResizeObserver(entries => {
+      if (entries[0]) {
+        const { width } = entries[0].contentRect;
+        setIsMobile(width < 768);
+      }
+    });
+
+    observer.observe(rootElement);
+    
+    // Set initial state based on actual container size once mounted
+    setIsMobile(rootElement.offsetWidth < 768);
+
+    return () => {
+      observer.disconnect();
+    };
   }, []);
 
   useEffect(() => {
@@ -195,7 +210,7 @@ const App: React.FC = () => {
                             )}
                         </div>
                     </div>
-                    <AIChatBubble />
+                    <AIChatBubble isMobile={isMobile} />
                 </>
             )}
 
@@ -260,10 +275,9 @@ const App: React.FC = () => {
                 savedEpisodes={savedEpisodes}
                 onToggleSave={handleToggleSave}
                 onClose={handleClose}
-                // FIX: Pass the correct handler function 'handleOpenSaved' instead of the undefined 'onOpenSaved'.
                 onOpenSaved={handleOpenSaved}
             />
-            <AIChatBubble />
+            <AIChatBubble isMobile={isMobile} />
         </>
       )}
       

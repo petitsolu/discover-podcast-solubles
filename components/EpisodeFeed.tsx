@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Episode } from '../types';
 import EpisodeCard from './EpisodeCard';
@@ -59,11 +60,11 @@ const EpisodeFeed: React.FC<EpisodeFeedProps> = ({ episodes, savedEpisodes, onTo
           id={`episode-${episode.numero}`}
           className="h-full w-full snap-start flex-shrink-0"
         >
-          {/* FIX: Removed the 'isModal' prop as it does not exist on type 'EpisodeCardProps'. */}
           <EpisodeCard
             episode={episode}
             isSaved={savedEpisodes.includes(episode.numero)}
             onToggleSave={() => onToggleSave(episode.numero)}
+            isMobile={true}
           />
         </section>
       ))}

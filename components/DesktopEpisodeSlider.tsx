@@ -176,6 +176,7 @@ const DesktopEpisodeSlider: React.FC<DesktopEpisodeSliderProps> = ({
                                     episode={episode}
                                     isSaved={savedEpisodes.includes(episode.numero)}
                                     onToggleSave={() => onToggleSave(episode.numero)}
+                                    isMobile={false}
                                 />
                             </div>
                         </div>

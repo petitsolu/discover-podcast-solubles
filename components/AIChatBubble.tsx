@@ -4,19 +4,16 @@ import CloseIcon from './icons/CloseIcon';
 import MinimizeIcon from './icons/MinimizeIcon';
 import MaximizeIcon from './icons/MaximizeIcon';
 
-const AIChatBubble: React.FC = () => {
+interface AIChatBubbleProps {
+    isMobile: boolean;
+}
+
+const AIChatBubble: React.FC<AIChatBubbleProps> = ({ isMobile }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [isReduced, setIsReduced] = useState(false);
-    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
     const logoUrl = "https://csoluble.media/wp-content/uploads/2025/11/Petit-Solu-assistant-IA-podcast-Solubles-Icon-e1763207117628.png";
     const iframeUrl = "https://petitsolu.netlify.app/";
-
-    useEffect(() => {
-        const handleResize = () => setIsMobile(window.innerWidth < 768);
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
 
     const handleOpen = () => {
         if (isMobile) {
