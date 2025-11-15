@@ -9,16 +9,18 @@ interface RouletteProps {
 const Roulette: React.FC<RouletteProps> = ({ episodes }) => {
   const reelItems = useMemo(() => {
     const shuffled = [...episodes].sort(() => Math.random() - 0.5);
-    const repeated = [];
-    for (let i = 0; i < 5; i++) {
-        repeated.push(...shuffled);
-    }
-    return repeated;
+    // To prevent crashes on mobile devices due to memory overload, we drastically reduce
+    // the number of items rendered in the animation. We take the first 30 unique
+    // shuffled episodes and repeat them once to create a seamless loop.
+    // This creates 60 DOM elements instead of 500+, ensuring high performance.
+    const shortList = shuffled.slice(0, Math.min(30, shuffled.length));
+    return [...shortList, ...shortList];
   }, [episodes]);
 
   const itemHeight = 480; 
   const totalHeight = reelItems.length * itemHeight;
-  const animationDuration = reelItems.length * 0.02; 
+  // A shorter animation duration for a smaller list creates a similar fast-scrolling effect.
+  const animationDuration = reelItems.length * 0.05; 
 
   return (
     <div className="h-full w-full overflow-hidden relative rounded-2xl bg-slate-900/50 flex flex-col items-center justify-center"
@@ -60,7 +62,7 @@ const Roulette: React.FC<RouletteProps> = ({ episodes }) => {
               to { transform: translateY(calc(-1 * var(--total-height) / 2)); }
             }
             .animate-roulette-scroll {
-              animation: roulette-scroll var(--animation-duration) cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
+              animation: roulette-scroll var(--animation-duration) linear infinite;
             }
             .shadow-inner-strong {
                 box-shadow: inset 0 0 25px rgba(0,0,0,0.7);
