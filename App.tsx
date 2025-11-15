@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { Episode } from './types';
 import { allProcessedEpisodes } from './data/episodes';
@@ -161,7 +160,7 @@ const App: React.FC = () => {
                                 </button>
                             </>
                         )}
-                        {gameState === 'spinning' && <Roulette episodes={allProcessedEpisodes} />}
+                        {gameState === 'spinning' && <Roulette episodes={allProcessedEpisodes} isMobile={isMobile} />}
                     </div>
                 </div>
             )}
@@ -264,7 +263,7 @@ const App: React.FC = () => {
                 </button>
             </>
         )}
-        {gameState === 'spinning' && <Roulette episodes={allProcessedEpisodes} />}
+        {gameState === 'spinning' && <Roulette episodes={allProcessedEpisodes} isMobile={isMobile} />}
       </div>
 
       {gameState === 'result' && selectedEpisode && (

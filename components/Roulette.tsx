@@ -1,25 +1,66 @@
-
 import React, { useMemo } from 'react';
 import { Episode } from '../types';
 
 interface RouletteProps {
   episodes: Episode[];
+  isMobile: boolean;
 }
 
-const Roulette: React.FC<RouletteProps> = ({ episodes }) => {
+const Roulette: React.FC<RouletteProps> = ({ episodes, isMobile }) => {
   const reelItems = useMemo(() => {
     const shuffled = [...episodes].sort(() => Math.random() - 0.5);
-    // To prevent crashes on mobile devices due to memory overload, we drastically reduce
-    // the number of items rendered in the animation. We take the first 30 unique
-    // shuffled episodes and repeat them once to create a seamless loop.
-    // This creates 60 DOM elements instead of 500+, ensuring high performance.
     const shortList = shuffled.slice(0, Math.min(30, shuffled.length));
-    return [...shortList, ...shortList];
+    return [...shortList, ...shortList, ...shortList, ...shortList];
   }, [episodes]);
 
+  // Mobile-specific lightweight animation based on user's suggestion
+  if (isMobile) {
+    const itemHeight = 150; // Smaller height for just images
+    const totalHeight = reelItems.length * itemHeight;
+    const animationDuration = reelItems.length * 0.025;
+
+    return (
+      <div className="h-full w-full max-w-sm overflow-hidden relative rounded-2xl bg-slate-900/50 flex flex-col items-center justify-center"
+          style={{
+              maskImage: 'linear-gradient(to bottom, transparent, black 20%, black 80%, transparent)',
+              WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 20%, black 80%, transparent)',
+          }}
+      >
+          {/* Static blurred background for performance */}
+          <img src={episodes[0]?.image || ''} alt="" className="absolute inset-0 w-full h-full object-cover filter blur-2xl scale-110" aria-hidden="true" />
+          <div className="absolute inset-0 bg-black/40"></div>
+          
+          <div 
+              className="w-full animate-roulette-scroll"
+              style={{ '--total-height': `${totalHeight}px`, '--animation-duration': `${animationDuration}s` } as React.CSSProperties}
+          >
+              {reelItems.map((episode, index) => (
+                  <div key={index} style={{ height: `${itemHeight}px` }} className="flex items-center justify-center p-2">
+                      <img src={episode.image} alt="" className="w-full h-full object-contain rounded-lg shadow-lg" loading="lazy" />
+                  </div>
+              ))}
+          </div>
+          
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div className="h-[150px] w-full border-y-2 border-indigo-400/80 opacity-75"></div>
+          </div>
+
+          <style>{`
+              @keyframes roulette-scroll {
+                from { transform: translateY(0); }
+                to { transform: translateY(calc(-1 * var(--total-height) / 2)); }
+              }
+              .animate-roulette-scroll {
+                animation: roulette-scroll var(--animation-duration) linear infinite;
+              }
+          `}</style>
+      </div>
+    );
+  }
+
+  // Original Desktop animation
   const itemHeight = 480; 
   const totalHeight = reelItems.length * itemHeight;
-  // A shorter animation duration for a smaller list creates a similar fast-scrolling effect.
   const animationDuration = reelItems.length * 0.05; 
 
   return (
@@ -37,10 +78,8 @@ const Roulette: React.FC<RouletteProps> = ({ episodes }) => {
                 <div key={index} style={{ height: `${itemHeight}px` }} className="flex items-center justify-center">
                     <div className="w-full max-w-sm h-full bg-slate-800 rounded-xl shadow-2xl overflow-hidden flex flex-col text-center transition-all duration-300 backdrop-blur-sm bg-opacity-80">
                         <div className="w-full aspect-square relative">
-                             {/* Blurred Background */}
                             <img src={episode.image} alt="" className="absolute inset-0 w-full h-full object-cover filter blur-md" aria-hidden="true" loading="lazy" />
                             <div className="absolute inset-0 bg-black/20"></div>
-                            {/* Main Image */}
                             <img src={episode.image} alt="" className="relative w-full h-full object-contain" loading="lazy" />
                         </div>
                         <div className="p-4 flex flex-col justify-center flex-grow">
