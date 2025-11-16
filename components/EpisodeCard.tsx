@@ -190,9 +190,9 @@ const EpisodeCard: React.FC<EpisodeCardProps> = ({
                 <div 
                     className="absolute inset-0 z-20 overflow-y-auto"
                     onScroll={handleScroll}
+                    style={{ paddingTop: `${imageHeight}px` }}
                 >
-                    <div style={{ height: `${imageHeight}px`, flexShrink: 0 }} />
-                    <div className="bg-slate-800 p-6 pb-32">
+                    <div className="bg-slate-800 p-6 pb-48">
                        <CardContent episode={episode} />
                     </div>
                 </div>
