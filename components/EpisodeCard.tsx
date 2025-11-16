@@ -192,12 +192,12 @@ const EpisodeCard: React.FC<EpisodeCardProps> = ({
                     onScroll={handleScroll}
                 >
                     <div style={{ height: `${imageHeight}px`, flexShrink: 0 }} />
-                    <div className="bg-slate-800 p-6 pb-28">
+                    <div className="bg-slate-800 p-6 pb-32">
                        <CardContent episode={episode} />
                     </div>
                 </div>
 
-                <div className="absolute bottom-0 left-0 right-0 z-30 bg-gradient-to-t from-slate-900 via-slate-900/80 to-transparent p-4 pt-12 pointer-events-none">
+                <div className="absolute bottom-0 left-0 right-0 z-30 bg-gradient-to-t from-slate-900 via-slate-900/80 to-transparent px-4 pt-12 pb-[calc(1rem+env(safe-area-inset-bottom))] pointer-events-none">
                     <button
                         onClick={onToggleSave}
                         className={`w-full flex items-center justify-center gap-2 font-semibold px-4 py-2.5 rounded-md transition-all duration-200 text-sm pointer-events-auto ${
