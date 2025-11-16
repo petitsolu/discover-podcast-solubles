@@ -32,7 +32,7 @@ const AIChatBubble: React.FC<AIChatBubbleProps> = ({ isMobile }) => {
                 className={`group fixed ${bubblePosition} z-50 flex items-center justify-center ${bubbleSize} border-2 border-teal-400 text-white rounded-full shadow-2xl transition-all duration-300 transform hover:scale-110 focus:outline-none focus:ring-4 focus:ring-indigo-500 focus:ring-opacity-50`}
                 style={{
                     backgroundColor: '#2A3449',
-                    top: isMobile ? '50vw' : undefined
+                    top: isMobile ? 'calc(50vw + 4rem)' : undefined
                 }}
                 aria-label="Ouvrir l'assistant IA Petit Solu"
             >
