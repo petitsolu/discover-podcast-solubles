@@ -9,6 +9,7 @@ import EpisodeFeed from './components/EpisodeFeed';
 import ArrowUpIcon from './components/icons/ArrowUpIcon';
 import DesktopEpisodeSlider from './components/DesktopEpisodeSlider';
 import AIChatBubble from './components/AIChatBubble';
+import ScrollNudge from './components/ScrollNudge';
 
 const App: React.FC = () => {
   const [gameState, setGameState] = useState<'idle' | 'spinning' | 'result'>('idle');
@@ -18,6 +19,9 @@ const App: React.FC = () => {
   const [savedEpisodes, setSavedEpisodes] = useState<number[]>([]);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [showScrollToTop, setShowScrollToTop] = useState(false);
+  const [showNudge, setShowNudge] = useState(false);
+  const nudgeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
 
   useEffect(() => {
     const rootElement = document.getElementById('root');
@@ -79,6 +83,19 @@ const App: React.FC = () => {
       setSelectedEpisode(newEpisode);
       
       setGameState('result');
+      
+      const hasSeenNudge = localStorage.getItem('hasSeenScrollNudge');
+      if (!hasSeenNudge && isMobile) {
+          if (nudgeTimeoutRef.current) {
+            clearTimeout(nudgeTimeoutRef.current);
+          }
+          setShowNudge(true);
+          localStorage.setItem('hasSeenScrollNudge', 'true');
+          nudgeTimeoutRef.current = setTimeout(() => {
+              setShowNudge(false);
+          }, 5000); 
+      }
+
     }, 3000);
   };
   
@@ -123,11 +140,36 @@ const App: React.FC = () => {
     }
   };
 
+  // Effect to hide nudge on user interaction
+  useEffect(() => {
+    if (!showNudge) return;
+
+    const feedContainer = document.querySelector('.snap-y');
+    
+    const hideNudge = () => {
+        if (nudgeTimeoutRef.current) {
+            clearTimeout(nudgeTimeoutRef.current);
+        }
+        setShowNudge(false);
+    };
+
+    feedContainer?.addEventListener('wheel', hideNudge, { once: true });
+    feedContainer?.addEventListener('touchstart', hideNudge, { once: true });
+
+    return () => {
+        feedContainer?.removeEventListener('wheel', hideNudge);
+        feedContainer?.removeEventListener('touchstart', hideNudge);
+    };
+  }, [showNudge]);
+
   // Effect to show/hide scroll to top button on mobile feed
   useEffect(() => {
-    if (!isMobile || gameState !== 'result') return;
+    if (!isMobile || gameState !== 'result') {
+      setShowScrollToTop(false);
+      return;
+    }
 
-    const feedContainer = document.querySelector('.snap-y'); // Assuming EpisodeFeed has this class
+    const feedContainer = document.querySelector('.snap-y');
     const handleScroll = () => {
         if (feedContainer) {
             setShowScrollToTop(feedContainer.scrollTop > window.innerHeight / 2);
@@ -174,6 +216,8 @@ const App: React.FC = () => {
                         initialEpisodeId={selectedEpisode.numero}
                     />
                     
+                    {showNudge && <ScrollNudge />}
+
                     {/* Vertical FAB stack, anchored to the dice button for alignment */}
                     <div className="fixed right-4 z-40" style={{ top: '50vw' }}>
                         <div className="relative -translate-y-1/2">
