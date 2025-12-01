@@ -11,6 +11,7 @@ export const allProcessedEpisodes: Episode[] = [
   "description": "Fiona Cosson, fondatrice de Zero Waste Marseille et autrice du guide « Tarpin moins » (auto-édition, 2024), explore avec Soluble(s) comment réduire ses déchets sans culpabilité. Allergies aux produits ménagers, démarche zéro déchet et Défi Familles : elle propose 200 adresses marseillaises, des conseils concrets et une approche réaliste pour agir à la source, faire des économies et prendre soin de sa santé.",
   "motscles": ["zéro déchet", "Fiona Cosson", "Tarpin moins", "Marseille", "déchets", "écologie", "climat", "Zero Waste Marseille", "poubelles", "tri sélectif", "Défi Familles", "consommation responsable", "fast fashion", "seconde main", "anti-gaspillage", "économie circulaire", "réduction déchets", "Métropole Aix-Marseille-Provence", "Soluble(s)"],
   "thematique": "Écologie et Consommation",
+  "image": "https://csoluble.media/wp-content/uploads/2025/11/01-_TARPIN-MOINS_-REDUIRE-NOS-DECHETS-SANS-PRESSION-_-LA-METHODE-MARSEILLAISE-Avec-Fiona-Cosson-559x559.jpg",
   "liens": {
     "page": "https://csoluble.media/epsode/tarpin-moins-reduire-dechets-marseille-zero-waste-fiona-cosson?utm_source=widget&utm_medium=podcast&utm_campaign=tenter_ma_chance",
     "spotify": "https://open.spotify.com/episode/0z6mNd0Pso6VPdqxQQVE4Q?si=Xk0WmbGWT4GHMmg4jkcn1w",
@@ -21,6 +22,7 @@ export const allProcessedEpisodes: Episode[] = [
     "summary": "https://csoluble.media/epsode/comment-reduire-ses-dechets-sans-culpabiliser-a-marseille/?utm_source=widget&utm_medium=podcast&utm_campaign=tenter_ma_chance"
   }
 }
+
 ,{
 "numero": 110,
 "titre": "Comment faire la paix avec nos écrans ? – Avec François Saltiel",
