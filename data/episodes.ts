@@ -2,6 +2,26 @@ import { Episode } from '../types';
 
 export const allProcessedEpisodes: Episode[] = [
     {
+  "numero": 111,
+  "titre": "« Tarpin moins » : Réduire nos déchets sans pression – La méthode marseillaise avec Fiona Cosson",
+  "date": "2025-12-01",
+  "duree": "24:14",
+  "invite": "Fiona Cosson",
+  "categorie": "Environnement",
+  "description": "Fiona Cosson, fondatrice de Zero Waste Marseille et autrice du guide « Tarpin moins » (auto-édition, 2024), explore avec Soluble(s) comment réduire ses déchets sans culpabilité. Allergies aux produits ménagers, démarche zéro déchet et Défi Familles : elle propose 200 adresses marseillaises, des conseils concrets et une approche réaliste pour agir à la source, faire des économies et prendre soin de sa santé.",
+  "motscles": ["zéro déchet", "Fiona Cosson", "Tarpin moins", "Marseille", "déchets", "écologie", "climat", "Zero Waste Marseille", "poubelles", "tri sélectif", "Défi Familles", "consommation responsable", "fast fashion", "seconde main", "anti-gaspillage", "économie circulaire", "réduction déchets", "Métropole Aix-Marseille-Provence", "Soluble(s)"],
+  "thematique": "Écologie et Consommation",
+  "liens": {
+    "page": "https://csoluble.media/epsode/tarpin-moins-reduire-dechets-marseille-zero-waste-fiona-cosson?utm_source=widget&utm_medium=podcast&utm_campaign=tenter_ma_chance",
+    "spotify": "https://open.spotify.com/episode/0z6mNd0Pso6VPdqxQQVE4Q?si=Xk0WmbGWT4GHMmg4jkcn1w",
+    "apple": "https://podcasts.apple.com/fr/podcast/tarpin-moins-r%C3%A9duire-nos-d%C3%A9chets-sans-pression-la-m%C3%A9thode/id1640003869?i=1000739072976",
+    "transcription": "https://csoluble.media/epsode/transcription-tarpin-moins-reduire-nos-dechets-sans-pression-la-methode-marseillaise-avec-fiona-cosson/?utm_source=widget&utm_medium=podcast&utm_campaign=tenter_ma_chance",
+    "youtube": "https://youtu.be/iQGkXKu5P1Q?si=LsJhfypbq9NxZtyl",
+    "deezer": "https://link.deezer.com/s/31KWxcrKLrt7Gpp5n4l7u",
+    "summary": "https://csoluble.media/epsode/comment-reduire-ses-dechets-sans-culpabiliser-a-marseille/?utm_source=widget&utm_medium=podcast&utm_campaign=tenter_ma_chance"
+  }
+}
+,{
 "numero": 110,
 "titre": "Comment faire la paix avec nos écrans ? – Avec François Saltiel",
 "date": "2025-11-24",
