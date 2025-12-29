@@ -2,6 +2,26 @@ import { Episode } from '../types';
 
 export const allProcessedEpisodes: Episode[] = [
    {
+  "numero": 113,
+  "titre": "Le Défi de Janvier : pourquoi le Dry January marche vraiment - Avec le Pr Naassila",
+  "date": "2025-12-29",
+  "duree": "30:30",
+  "invite": "Mickael Naassila",
+  "categorie": "Santé",
+  "description": "Le professeur Mickael Naassila, président de la Société française d'alcoologie, explore avec Soluble(s) comment une pause d'un mois sans alcool transforme durablement notre rapport à la boisson. Il détaille les bénéfices physiologiques immédiats (sommeil, glycémie, peau), les ressorts psychologiques du défi et donne des outils concrets pour réussir à déjouer la pression sociale.",
+  "motscles": ["Dry January", "Défi de Janvier", "alcool", "santé publique", "Mickael Naassila", "prévention", "addictions", "alcoologie", "bien-être", "physiologie", "pression sociale", "consommation à risque", "binge drinking", "Société française d'alcoologie", "My Défi", "sevrage", "vin sans alcool", "habitudes", "recherche médicale", "santé", "Soluble(s)"],
+  "thematique": "Santé et Prévention",
+  "image": "https://csoluble.media/wp-content/uploads/2025/12/01-LE-DEFI-DE-JANVIER-POURQUOI-LE-DRY-JANUARY-MARCHE-VRAIMENT-Avec-le-Pr-Naassila-1-559x559.jpg",
+  "liens": {
+    "page": "https://csoluble.media/epsode/defi-janvier-dry-january-efficacite-naassila/?utm_source=widget&utm_medium=podcast&utm_campaign=tenter_ma_chance",
+    "spotify": "https://open.spotify.com/episode/24nudMugO4zkdw1kAfSyJ7?si=134361d7c0184ccb",
+    "apple": "https://podcasts.apple.com/fr/podcast/le-d%C3%A9fi-de-janvier-pourquoi-le-dry-january-marche/id1640003869?i=1000743012391",
+    "transcription": "https://csoluble.media/epsode/transcription-defi-janvier-dry-january-efficacite-naassila/?utm_source=widget&utm_medium=podcast&utm_campaign=tenter_ma_chance",
+    "youtube": "https://youtu.be/eus4Bz-RZl0?si=3zLI5kSdmaiI7xl6",
+    "deezer": "https://link.deezer.com/s/320UO0O2qKvWW16z5Op4L",
+    "summary": "https://csoluble.media/epsode/defi-janvier-faq-questions-reponses/?utm_source=widget&utm_medium=podcast&utm_campaign=tenter_ma_chance"
+  }
+}, {
   "numero": 112,
   "titre": "VISOV : Les sentinelles numériques des crises - Avec Élodie Boileau",
   "date": "2025-12-08",
@@ -21,8 +41,9 @@ export const allProcessedEpisodes: Episode[] = [
     "deezer": "https://link.deezer.com/s/31OVkDhZVgYgI1Qc8UY36",
     "summary": "https://csoluble.media/epsode/comment-les-citoyens-peuvent-ils-aider-en-temps-de-crise/?utm_source=widget&utm_medium=podcast&utm_campaign=tenter_ma_chance"
   }
-},
-    {
+}
+   ,
+      {
   "numero": 111,
   "titre": "« Tarpin moins » : Réduire nos déchets sans pression – La méthode marseillaise avec Fiona Cosson",
   "date": "2025-12-01",
